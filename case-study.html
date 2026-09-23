@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Caso de Estudio Técnico: Motor de Conciliación de Transacciones Asíncronas por Thomas Cortés.">
+  <meta name="theme-color" content="#0D1117">
+  <title>Caso de Estudio: Motor de Conciliación | Thomas Cortés</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Inicio">
+        <span class="brand-name">Thomas Cortés</span>
+        <span class="brand-tag">/ Full Stack</span>
+      </a>
+
+      <nav class="nav-menu" role="navigation" aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="index.html#sobre-mi" class="nav-item">Sobre mí</a></li>
+          <li><a href="index.html#proyectos" class="nav-item">Proyectos</a></li>
+          <li><a href="index.html#stack" class="nav-item">Stack</a></li>
+          <li><a href="index.html#contacto" class="nav-item">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Perfil de GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="case-study-main" role="main">
+    <div class="container">
+
+      <!-- Botón de regreso -->
+      <nav class="back-nav" aria-label="Navegación de retorno">
+        <a href="index.html#proyectos" class="back-link">
+          <span aria-hidden="true">&larr;</span> Volver a Proyectos
+        </a>
+      </nav>
+
+      <header class="case-study-header">
+        <h1 class="case-study-title">Motor de Conciliación de Transacciones Asíncronas</h1>
+        
+        <!-- Metadata Strip -->
+        <div class="metadata-strip" aria-label="Ficha técnica del proyecto">
+          <div class="meta-item">
+            <span class="meta-k">Rol:</span>
+            <span class="meta-v">System Architect &amp; Full Stack</span>
+          </div>
+          <div class="meta-separator" aria-hidden="true">&vert;</div>
+          <div class="meta-item">
+            <span class="meta-k">Duración:</span>
+            <span class="meta-v">4 meses</span>
+          </div>
+          <div class="meta-separator" aria-hidden="true">&vert;</div>
+          <div class="meta-item">
+            <span class="meta-k">Estado:</span>
+            <span class="meta-v text-green">Producción</span>
+          </div>
+          <div class="meta-separator" aria-hidden="true">&vert;</div>
+          <div class="meta-item">
+            <span class="meta-k">Repositorio:</span>
+            <span class="meta-v">GitHub (Privado/Demo disponible)</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Contexto & Análisis de Falla (2 Columnas) -->
+      <section class="section-case-study" aria-labelledby="context-heading">
+        <h2 id="context-heading" class="visually-hidden">Contexto y Análisis de Falla</h2>
+        <div class="case-two-cols">
+          
+          <div class="col-case">
+            <span class="code-comment">// EL REQUERIMIENTO</span>
+            <h3 class="col-case-title">Escalabilidad asíncrona sin bloqueos</h3>
+            <p class="col-case-text">
+              El sistema de la fintech requería conciliar un volumen constante de 10,000 transacciones por 
+              minuto contra múltiples APIs bancarias de terceros. No era viable bloquear hilos de base de 
+              datos en transacciones síncronas que dependieran de tiempos de respuesta externos variables.
+            </p>
+          </div>
+
+          <div class="col-case">
+            <span class="code-comment">// ANÁLISIS DE FALLA</span>
+            <h3 class="col-case-title">Deadlocks e ineficiencia por contención</h3>
+            <p class="col-case-text">
+              La implementación inicial utilizaba transacciones ACID síncronas, bloqueando filas en PostgreSQL. 
+              Ante fallos o picos de latencia en las APIs de terceros, la latencia p99 aumentaba por encima 
+              de los 4,000ms, agotando rápidamente la piscina de conexiones de la base de datos y produciendo 
+              fallos generales en cascada.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Planos de Arquitectura (Blueprint) -->
+      <section class="section-case-study" aria-labelledby="blueprint-heading">
+        <h2 id="blueprint-heading" class="section-heading-case">Planos de la Arquitectura de Sistemas</h2>
+        
+        <div class="blueprint-container" role="figure" aria-label="Diagrama de topología de arquitectura de microservicios">
+          <div class="blueprint-grid-overlay" aria-hidden="true"></div>
+          
+          <div class="blueprint-flow">
+            
+            <div class="bp-node">
+              <span class="bp-node-title">Web &amp; Mobile Clients</span>
+            </div>
+
+            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
+
+            <div class="bp-node">
+              <span class="bp-node-title">API Gateway</span>
+              <span class="bp-node-sub">Rate Limiting &amp; Auth</span>
+            </div>
+
+            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
+
+            <div class="bp-node bp-highlight">
+              <span class="bp-node-title">Worker Queue</span>
+              <span class="bp-node-sub">Redis / RabbitMQ</span>
+            </div>
+
+            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
+
+            <div class="bp-node">
+              <span class="bp-node-title">Idempotent Processor</span>
+            </div>
+
+            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
+
+            <div class="bp-node">
+              <span class="bp-node-title">PostgreSQL Cluster</span>
+            </div>
+
+          </div>
+
+          <p class="blueprint-caption">
+            Topología desacoplada: El cliente recibe respuesta en 12ms (HTTP 202 Accepted) mientras la cola 
+            y los workers asíncronos procesan las conciliaciones bancarias con reintentos controlados.
+          </p>
+        </div>
+      </section>
+
+      <!-- Bloque de Código de 20 Líneas (Implementación Real) -->
+      <section class="section-case-study" aria-labelledby="code-heading">
+        <h2 id="code-heading" class="section-heading-case">Implementación Técnica y Control de Idempotencia</h2>
+        
+        <div class="code-block-full" role="region" aria-label="Código fuente de conciliador de transacciones">
+          <div class="code-header">
+            <span class="code-file-name">TransactionReconciler.ts</span>
+            <span class="code-lang-tag">TypeScript (Strict)</span>
+          </div>
+          <pre><code><span class="code-line"><span class="line-num">01</span> <span class="kw">import</span> { <span class="tp">Transaction</span>, <span class="tp">OutboxStore</span> } <span class="kw">from</span> <span class="str">'./db'</span>;</span>
+<span class="code-line"><span class="line-num">02</span> <span class="kw">import</span> { <span class="tp">RedisClient</span> } <span class="kw">from</span> <span class="str">'./redis'</span>;</span>
+<span class="code-line"><span class="line-num">03</span> </span>
+<span class="code-line"><span class="line-num">04</span> <span class="kw">export class</span> <span class="tp">TransactionReconciler</span> {</span>
+<span class="code-line"><span class="line-num">05</span>   <span class="kw">constructor</span>(<span class="kw">private</span> db: <span class="tp">DBClient</span>, <span class="kw">private</span> cache: <span class="tp">RedisClient</span>) {}</span>
+<span class="code-line"><span class="line-num">06</span> </span>
+<span class="code-line"><span class="line-num">07</span>   <span class="kw">async</span> <span class="fn">processWithOutbox</span>(tx: <span class="tp">Transaction</span>): <span class="tp">Promise</span>&lt;<span class="kw">void</span>&gt; {</span>
+<span class="code-line"><span class="line-num">08</span>     <span class="kw">const</span> idempotencyKey = <span class="str">`tx:idemp:${tx.id}`</span>;</span>
+<span class="code-line"><span class="line-num">09</span>     </span>
+<span class="code-line"><span class="line-num">10</span>     <span class="code-comment">// Lock temporal en caché para evitar condiciones de carrera inmediatas</span></span>
+<span class="code-line"><span class="line-num">11</span>     <span class="kw">const</span> locked = <span class="kw">await</span> <span class="kw">this</span>.cache.<span class="fn">set</span>(idempotencyKey, <span class="str">'pending'</span>, <span class="str">'NX'</span>, <span class="str">'EX'</span>, <span class="num">10</span>);</span>
+<span class="code-line"><span class="line-num">12</span>     <span class="kw">if</span> (!locked) <span class="kw">throw new</span> <span class="tp">Error</span>(<span class="str">'Duplicate transaction in-flight'</span>);</span>
+<span class="code-line"><span class="line-num">13</span> </span>
+<span class="code-line"><span class="line-num">14</span>     <span class="kw">await</span> <span class="kw">this</span>.db.<span class="fn">transaction</span>(<span class="kw">async</span> (manager) =&gt; {</span>
+<span class="code-line"><span class="line-num">15</span>       <span class="code-comment">// Escribir en outbox para mantener consistencia eventual garantizada</span></span>
+<span class="code-line"><span class="line-num">16</span>       <span class="kw">await</span> manager.<span class="fn">save</span>(<span class="kw">new</span> <span class="tp">OutboxStore</span>(tx));</span>
+<span class="code-line"><span class="line-num">17</span>       <span class="kw">await</span> manager.<span class="fn">updateTransactionStatus</span>(tx.id, <span class="str">'processed'</span>);</span>
+<span class="code-line"><span class="line-num">18</span>     });</span>
+<span class="code-line"><span class="line-num">19</span>   }</span>
+<span class="code-line"><span class="line-num">20</span> }</span></code></pre>
+        </div>
+      </section>
+
+      <!-- Decisiones de Diseño & Post-Mortem (3 Tarjetas) -->
+      <section class="section-case-study" aria-labelledby="postmortem-heading">
+        <h2 id="postmortem-heading" class="section-heading-case">Decisiones de Diseño y Post-Mortem Técnico</h2>
+        
+        <div class="postmortem-grid">
+          
+          <article class="postmortem-card">
+            <h3 class="postmortem-title">Consistencia Eventual vs Latencia</h3>
+            <p class="postmortem-text">
+              Sacrificamos la consistencia inmediata a cambio de una alta disponibilidad extrema. El estado de 
+              conciliación se garantiza de manera eventual en menos de 2 segundos, reduciendo la latencia de 
+              respuesta al usuario a solo 12ms promedio.
+            </p>
+          </article>
+
+          <article class="postmortem-card">
+            <h3 class="postmortem-title">Seguridad y Defensa OWASP</h3>
+            <p class="postmortem-text">
+              Implementamos validación criptográfica estricta en el payload utilizando firmas HMAC SHA-256. 
+              Esto evita falsificaciones de lotes y garantiza que el origen de las transacciones procesadas 
+              provenga exclusivamente de endpoints autorizados.
+            </p>
+          </article>
+
+          <article class="postmortem-card">
+            <h3 class="postmortem-title">Retrospectiva Técnica</h3>
+            <p class="postmortem-text">
+              Si tuviera que refactorizar el sistema hoy, reemplazaría el polling actual de workers por un 
+              esquema de observabilidad con telemetría distribuida utilizando OpenTelemetry, mejorando el 
+              diagnóstico de cuellos de botella en APIs de terceros.
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-copy">Thomas Cortés &copy; 2026 &middot; Hecho con precisión técnica</p>
+      <div class="footer-links">
+        <a href="mailto:t.cortes@example.com" class="footer-link">t.cortes@example.com</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

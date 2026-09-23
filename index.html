@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio de Thomas Cortés — Desarrollador Full Stack & Diseñador de Sistemas.">
+  <meta name="theme-color" content="#0D1117">
+  <title>Thomas Cortés | Full Stack & System Architect</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Header / Navbar -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Inicio">
+        <span class="brand-name">Thomas Cortés</span>
+        <span class="brand-tag">/ Full Stack</span>
+      </a>
+
+      <nav class="nav-menu" role="navigation" aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#sobre-mi" class="nav-item">Sobre mí</a></li>
+          <li><a href="#proyectos" class="nav-item">Proyectos</a></li>
+          <li><a href="#stack" class="nav-item">Stack</a></li>
+          <li><a href="#contacto" class="nav-item">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Perfil de GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="sobre-mi" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        
+        <div class="status-badge" aria-label="Disponibilidad laboral">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Disponible para nuevos proyectos</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-heading">
+          Desarrollador Full Stack. Construyo sistemas web con foco en arquitectura mantenible, rendimiento y seguridad.
+        </h1>
+
+        <p class="hero-description">
+          Diseño aplicaciones desacopladas aplicando principios SOLID, mitigaciones defensivas OWASP y optimización de Core Web Vitals en producción.
+        </p>
+
+        <div class="active-stack-row" aria-label="Stack activo en producción">
+          <span class="stack-chip">TypeScript</span>
+          <span class="stack-chip">Go</span>
+          <span class="stack-chip">PostgreSQL</span>
+          <span class="stack-chip">Docker</span>
+          <span class="stack-chip">Next.js</span>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#proyectos" class="btn btn-primary">Ver Casos de Estudio</a>
+          <a href="#contacto" class="btn btn-secondary">Contactar</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Proyectos y Arquitectura -->
+    <section class="section projects-section" id="proyectos" aria-labelledby="projects-title">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <h2 id="projects-title" class="section-heading">Proyectos y Arquitectura de Sistemas</h2>
+          
+          <!-- Filtro interactivo de pestañas -->
+          <div class="tab-list" role="tablist" aria-label="Filtro de proyectos por categoría">
+            <button role="tab" aria-selected="true" class="tab-btn active" data-filter="all" id="tab-all">
+              Todos <span class="tab-count">[04]</span>
+            </button>
+            <button role="tab" aria-selected="false" class="tab-btn" data-filter="backend" id="tab-backend">
+              Sistemas & Backend <span class="tab-count">[02]</span>
+            </button>
+            <button role="tab" aria-selected="false" class="tab-btn" data-filter="frontend" id="tab-frontend">
+              Frontend Architecture <span class="tab-count">[01]</span>
+            </button>
+            <button role="tab" aria-selected="false" class="tab-btn" data-filter="devops" id="tab-devops">
+              DevOps & Cloud <span class="tab-count">[01]</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="panel-projects">
+          
+          <!-- Flagship Project Card (Hero Card) -->
+          <article class="project-flagship-card" data-category="backend">
+            <div class="flagship-left">
+              <div class="terminal-mockup" role="region" aria-label="Métricas de ejecución en tiempo real">
+                <div class="terminal-header">
+                  <div class="window-controls" aria-hidden="true">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                  </div>
+                  <span class="terminal-title">conciliacion.internal / v1</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="metric-grid">
+                    <div class="metric-item">
+                      <span class="metric-label">CONCILIACIONES / SEG</span>
+                      <span class="metric-val text-accent">10,230/min</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">LATENCIA PROMEDIO</span>
+                      <span class="metric-val text-green">12.4ms</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">MEMORIA USADA</span>
+                      <span class="metric-val">14%</span>
+                    </div>
+                  </div>
+                  <div class="metric-bar-container">
+                    <span class="metric-sublabel">PROCESOS EN COLA DE EVENTOS</span>
+                    <div class="metric-progress-bg">
+                      <div class="metric-progress-fill"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flagship-right">
+              <span class="badge-version">En producción · v2.4</span>
+              <h3 class="flagship-title">Motor de Conciliación de Transacciones Asíncronas</h3>
+              <p class="flagship-desc">
+                Para resolver los problemas de bloqueo de concurrencia en la base de datos PostgreSQL principal, 
+                diseñé un backend desacoplado que utiliza una cola de Redis como capa de retención de transacciones. 
+                Los workers asíncronos consumen lotes idempotentes mitigando los p99 de latencia por completo.
+              </p>
+              
+              <!-- Snippet de código con números de línea -->
+              <div class="code-preview" aria-label="Fragmento de código del controlador">
+                <pre><code><span class="code-line"><span class="line-num">01</span> <span class="kw">async function</span> <span class="fn">reconcile</span>(tx: <span class="tp">Transaction</span>): <span class="tp">Promise</span>&lt;<span class="tp">Result</span>&gt; {</span>
+<span class="code-line"><span class="line-num">02</span>   <span class="kw">const</span> isIdempotent = <span class="kw">await</span> redis.<span class="fn">set</span>(<span class="str">`idemp:${tx.id}`</span>, <span class="str">'1'</span>, <span class="str">'NX'</span>, <span class="str">'EX'</span>, <span class="num">60</span>);</span>
+<span class="code-line"><span class="line-num">03</span>   <span class="kw">if</span> (!isIdempotent) <span class="kw">return</span> Result.<span class="val">DUPLICATE</span>;</span>
+<span class="code-line"><span class="line-num">04</span>   <span class="kw">return await</span> db.<span class="fn">transaction</span>(<span class="kw">async</span> (ctx) =&gt; <span class="fn">process</span>(ctx, tx));</span>
+<span class="code-line"><span class="line-num">05</span> }</span></code></pre>
+              </div>
+
+              <div class="flagship-action">
+                <a href="case-study.html" class="link-deep-dive">
+                  Leer Caso de Estudio Técnico <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Secondary Projects (2 Column Grid) -->
+          <div class="secondary-grid">
+            
+            <article class="secondary-card" data-category="devops">
+              <div class="card-meta">
+                <span class="card-type-tag">CLI TOOL</span>
+                <span class="card-icon" aria-hidden="true">⚙️</span>
+              </div>
+              <h3 class="card-title">CLI de Auditoría de Seguridad OWASP</h3>
+              <p class="card-desc">
+                Herramienta de escaneo de vulnerabilidades automatizada para pipelines de CI/CD que detecta 
+                tokens expuestos, dependencias comprometidas y fugas de datos en tiempo real.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Go</span>
+                <span class="tag">Docker</span>
+                <span class="tag">GitHub Actions</span>
+              </div>
+              <div class="card-footer">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link-repo">
+                  Ver Repositorio <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="secondary-card" data-category="frontend">
+              <div class="card-meta">
+                <span class="card-type-tag">LIBRARY</span>
+                <span class="badge-coverage">98% coverage</span>
+              </div>
+              <h3 class="card-title">State Management Library for WebSockets</h3>
+              <p class="card-desc">
+                Gestor de estado ultra-liviano para sincronización bidireccional asíncrona, con reconexión 
+                automática exponencial y buffer en memoria para aplicaciones de alta frecuencia.
+              </p>
+              <div class="card-tags">
+                <span class="tag">TypeScript</span>
+                <span class="tag">React</span>
+                <span class="tag">Vitest</span>
+              </div>
+              <div class="card-footer">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link-repo">
+                  Ver Repositorio <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Filosofía e Ingeniería de Software -->
+    <section class="section philosophy-section" id="stack" aria-labelledby="philosophy-title">
+      <div class="container">
+        <h2 id="philosophy-title" class="section-heading">Filosofía e Ingeniería de Software</h2>
+        
+        <div class="philosophy-grid">
+          
+          <div class="philosophy-col">
+            <h3 class="col-title">Backend Architecture</h3>
+            <ul class="clean-list">
+              <li>Sistemas asíncronos guiados por eventos</li>
+              <li>Patrones idempotentes y Outbox Transaccional</li>
+              <li>Estrategias de caching multinivel distribuidas</li>
+              <li>Modelado de datos aplicando normalización relacional (3NF/PostgreSQL)</li>
+            </ul>
+          </div>
+
+          <div class="philosophy-col">
+            <h3 class="col-title">Frontend Engineering</h3>
+            <ul class="clean-list">
+              <li>Diseño de componentes desacoplados y modulares</li>
+              <li>Optimización estricta de Core Web Vitals (LCP &lt; 1.0s)</li>
+              <li>Sincronización de estado local con persistencia reactiva</li>
+              <li>Estrategias avanzadas de renderizado estático y SSR</li>
+            </ul>
+          </div>
+
+          <div class="philosophy-col">
+            <h3 class="col-title">Quality &amp; Security</h3>
+            <ul class="clean-list">
+              <li>Mitigaciones estrictas de OWASP Top 10 (XSS, CSRF, Inyecciones)</li>
+              <li>Testing robusto: Unitario, Integración y E2E (Jest/Vitest/Playwright)</li>
+              <li>Automatización de auditoría y CI/CD defensivo</li>
+              <li>Monitoreo con observabilidad distribuida (Métricas y Traces)</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto Directo -->
+    <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
+      <div class="container contact-box">
+        <h2 id="contact-title" class="section-heading">Contacto</h2>
+        <p class="contact-text">
+          ¿Tienes una consulta técnica o una vacante para la que mi perfil encaje? Escríbeme directamente o conectemos por redes profesionales.
+        </p>
+        <div class="contact-action-row">
+          <button id="copy-email-btn" class="btn btn-primary" type="button" data-email="t.cortes@example.com">
+            <span class="btn-text">Copiar Correo (t.cortes@example.com)</span>
+          </button>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+        </div>
+        <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-copy">Thomas Cortés &copy; 2026 &middot; Hecho con precisión técnica</p>
+      <div class="footer-links">
+        <a href="mailto:t.cortes@example.com" class="footer-link">t.cortes@example.com</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
