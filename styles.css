@@ -110,10 +110,11 @@ body {
 .section {
   padding: 5.5rem 0;
   border-bottom: 1px solid var(--border-subtle);
+  max-width: 100%;
 }
 
 .section-heading {
-  font-size: 1.75rem;
+  font-size: clamp(1.5rem, 3.6vw, 1.75rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -200,6 +201,7 @@ body {
   flex-direction: column;
   gap: 1.5rem;
   max-width: 900px;
+  width: 100%;
 }
 
 .status-badge {
@@ -228,11 +230,12 @@ body {
 }
 
 .hero-heading {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.85rem, 6vw, 2.75rem);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.03em;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
 }
 
 .hero-description {
@@ -260,6 +263,7 @@ body {
 
 .hero-cta-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 0.5rem;
 }
@@ -279,6 +283,10 @@ body {
   cursor: pointer;
   border: 1px solid transparent;
   transition: all var(--transition-fast);
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .btn-primary {
@@ -365,6 +373,7 @@ body {
   padding: 2rem;
   margin-bottom: 2rem;
   transition: border-color var(--transition-base);
+  max-width: 100%;
 }
 
 .project-flagship-card:hover {
@@ -424,6 +433,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  max-width: 100%;
 }
 
 .metric-item {
@@ -529,7 +539,13 @@ body {
 .code-comment { color: #8B949E; font-style: italic; }
 
 .flagship-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   margin-top: 0.5rem;
+  max-width: 100%;
 }
 
 .link-deep-dive {
@@ -541,6 +557,9 @@ body {
   text-decoration: none;
   font-size: 0.95rem;
   transition: gap var(--transition-fast);
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .link-deep-dive:hover {
@@ -554,6 +573,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+  max-width: 100%;
 }
 
 .secondary-card {
@@ -565,6 +585,8 @@ body {
   flex-direction: column;
   gap: 0.85rem;
   transition: border-color var(--transition-base), transform var(--transition-fast);
+  max-width: 100%;
+  min-width: 0;
 }
 
 .secondary-card:hover {
@@ -622,7 +644,13 @@ body {
 }
 
 .card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   margin-top: 0.5rem;
+  max-width: 100%;
 }
 
 .link-repo {
@@ -634,6 +662,9 @@ body {
   align-items: center;
   gap: 0.35rem;
   transition: color var(--transition-fast);
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .link-repo:hover {
@@ -648,6 +679,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
   margin-top: 2rem;
+  max-width: 100%;
 }
 
 .philosophy-col {
@@ -655,6 +687,8 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.75rem;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .col-title {
@@ -692,6 +726,7 @@ body {
    ========================================================================== */
 .contact-box {
   max-width: 780px;
+  width: 100%;
 }
 
 .contact-text {
@@ -705,6 +740,8 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
 }
 
 .copy-feedback {
@@ -836,6 +873,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  max-width: 100%;
 }
 
 .col-case {
@@ -846,6 +884,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .col-case-title {
@@ -867,6 +907,7 @@ body {
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .blueprint-grid-overlay {
@@ -979,6 +1020,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
+  max-width: 100%;
 }
 
 .postmortem-card {
@@ -989,6 +1031,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .postmortem-title {
@@ -1017,12 +1061,43 @@ body {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .section {
+    padding: 4.25rem 0;
+  }
+  .hero-section {
+    padding: 5rem 0 3.5rem;
+  }
   .nav-links {
     display: none;
   }
+  .hero-cta-group,
+  .contact-action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-cta-group .btn,
+  .contact-action-row .btn {
+    width: 100%;
+  }
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
   .secondary-grid,
+  .philosophy-grid,
+  .postmortem-grid,
   .case-two-cols {
     grid-template-columns: 1fr;
+  }
+  .project-flagship-card,
+  .secondary-card,
+  .col-case,
+  .philosophy-col,
+  .postmortem-card,
+  .blueprint-container {
+    padding: 1.25rem;
   }
   .blueprint-flow {
     flex-direction: column;
@@ -1039,5 +1114,23 @@ body {
   }
   .meta-separator {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-heading {
+    font-size: clamp(1.55rem, 8vw, 1.85rem);
+    line-height: 1.25;
+  }
+  .section-heading,
+  .case-study-title,
+  .section-heading-case {
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+    line-height: 1.25;
+  }
+  .status-badge,
+  .tab-btn,
+  .stack-chip {
+    max-width: 100%;
   }
 }
