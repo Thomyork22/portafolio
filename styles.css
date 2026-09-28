@@ -1017,27 +1017,170 @@ body {
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
+  .site-header {
+    position: sticky;
   }
+
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4.5rem;
+    padding: 0.75rem 0;
+    gap: 0.75rem;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .nav-item {
+    font-size: 0.82rem;
+  }
+
+  .hero-section {
+    padding-top: 4.5rem;
+  }
+
+  .hero-cta-group,
+  .contact-action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-header-row {
+    align-items: flex-start;
+  }
+
+  .tab-list {
+    width: 100%;
+  }
+
+  .tab-btn {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+    text-align: center;
+    padding-inline: 0.7rem;
+  }
+
   .secondary-grid,
-  .case-two-cols {
+  .case-two-cols,
+  .postmortem-grid,
+  .philosophy-grid {
     grid-template-columns: 1fr;
   }
+
+  .project-flagship-card {
+    padding: 1.25rem;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .blueprint-flow {
     flex-direction: column;
     align-items: stretch;
   }
+
   .bp-arrow {
     transform: rotate(90deg);
     align-self: center;
   }
+
   .metadata-strip {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
+
   .meta-separator {
     display: none;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .brand-name {
+    font-size: 0.92rem;
+  }
+
+  .brand-tag {
+    display: none;
+  }
+
+  .hero-heading {
+    font-size: clamp(1.8rem, 8vw, 2.25rem);
+  }
+
+  .hero-description,
+  .flagship-desc,
+  .card-desc,
+  .contact-text,
+  .col-case-text,
+  .postmortem-text {
+    font-size: 0.9rem;
+  }
+
+  .status-badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .status-text {
+    font-size: 0.78rem;
+  }
+
+  .tab-btn {
+    flex-basis: 100%;
+  }
+
+  .terminal-title {
+    font-size: 0.68rem;
+  }
+
+  .metric-val {
+    font-size: 1rem;
+  }
+
+  .panel-projects,
+  #panel-projects {
+    width: 100%;
+  }
+
+  .secondary-card,
+  .philosophy-col,
+  .col-case {
+    padding: 1.25rem;
   }
 }
