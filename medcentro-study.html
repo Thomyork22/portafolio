@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Caso de estudio técnico de Clínica MedCentro: Data Lakehouse y Machine Learning hospitalario.">
+  <meta name="theme-color" content="#080C14">
+  <title>Data Lakehouse &amp; Machine Learning Hospitalario — Caso de estudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="case-study-fidelity.css">
+</head>
+<body>
+  <main class="case-study" id="main-content">
+    <header class="hero">
+      <a class="back-link" href="index.html#proyectos" aria-label="Volver a proyectos">
+        <span aria-hidden="true">&larr;</span>
+        Volver a Proyectos
+      </a>
+
+      <div class="hero-copy">
+        <h1>Data Lakehouse &amp; Machine Learning Hospitalario</h1>
+        <p class="terminal-line">$ cat case_study_meta.json</p>
+      </div>
+
+      <dl class="metadata">
+        <div class="metadata-labels" aria-hidden="true">
+          <span>ENTORNO TARGET</span>
+          <span>DEMO PÚBLICA</span>
+          <span>ESTADO</span>
+          <span>ROL / STACK</span>
+        </div>
+
+        <div class="metadata-values">
+          <div>
+            <dt>ENTORNO TARGET</dt>
+            <dd>SQL Server + Power BI</dd>
+          </div>
+          <div>
+            <dt>DEMO PÚBLICA</dt>
+            <dd>Repositorio Privado</dd>
+          </div>
+          <div>
+            <dt>ESTADO</dt>
+            <dd>Proyecto Académico (INACAP)</dd>
+          </div>
+          <div>
+            <dt>ROL / STACK</dt>
+            <dd class="mono">Data Engineer (Pentaho, Python, DAX)</dd>
+          </div>
+        </div>
+      </dl>
+    </header>
+
+    <section class="context-grid" aria-label="Contexto y solución del proyecto">
+      <article>
+        <p class="eyebrow"><span aria-hidden="true">▮</span> El Requerimiento</p>
+        <h2>Fragmentación de silos y predicción UCI</h2>
+        <p>
+          La Clínica operaba con 5 sistemas aislados (HIS, LIS, PACS, IoT UCI y SAP ERP). Se requería centralizar esta información heterogénea para reportería gerencial, cumpliendo estrictamente con la Ley N° 21.541 de protección de datos, y construir un modelo predictivo para detectar el deterioro clínico temprano en pacientes de UCI.
+        </p>
+      </article>
+
+      <article>
+        <p class="eyebrow"><span aria-hidden="true">▮</span> Análisis y Solución</p>
+        <h2>Arquitectura Medallón y Pipeline ML</h2>
+        <p>
+          Se construyó un Data Lakehouse (zonas Bronze, Silver, Gold) orquestado 100% con Pentaho Data Integration para garantizar schema-on-read. Se aplicó anonimización criptográfica irreversible y se entrenó un modelo de Machine Learning (Scikit-Learn) que escribe sus predicciones de vuelta en la constelación de hechos de la base de datos.
+        </p>
+      </article>
+    </section>
+
+    <section class="architecture" aria-labelledby="architecture-title">
+      <p class="terminal-line">$ sys_architecture --graph</p>
+      <h2 id="architecture-title">Planos de la Arquitectura de Sistemas</h2>
+
+      <div class="architecture-flow">
+        <article class="architecture-node">
+          <p>DATA SOURCES</p>
+          <h3>Orígenes Médicos</h3>
+          <span>HIS, SAP, PACS, Sensores IoT</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node compact">
+          <p>ETL PENTAHO</p>
+          <h3>Orquestación y Hash</h3>
+          <span>Limpieza y anonimización SHA-256</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node">
+          <p>LAKEHOUSE</p>
+          <h3>Zonas Bronze/Silver/Gold</h3>
+          <span>Constelación de hechos (SQL Server)</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node data-node">
+          <p>CONSUMO ANALÍTICO</p>
+          <h3>Power BI &amp; Scikit-Learn</h3>
+          <span>Dashboards DAX y Modelo Predictivo</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="code-section" aria-labelledby="code-title">
+      <p class="section-kicker">// CLINICAL ML PIPELINE</p>
+      <h2 id="code-title">Pipeline de Machine Learning y Balanceo de Clases</h2>
+      <p class="section-description">
+        Fragmento de la preparación y entrenamiento del modelo predictivo. Se utiliza una Regresión Logística con balanceo de clases (class_weight='balanced') para evitar que la clase mayoritaria (pacientes estables) invisibilice los casos reales de deterioro. El modelo alcanzó un Recall perfecto de 1.000.
+      </p>
+
+      <div class="code-editor">
+        <div class="editor-header">
+          <div class="traffic-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>uci_prediction_model.py</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="editor-body">
+          <ol class="code-lines" aria-label="Código Python del modelo predictivo UCI">
+            <li><code><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</code></li>
+            <li><code><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</code></li>
+            <li><code><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</code></li>
+            <li><code><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score, precision_score, recall_score</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code><span class="comment"># 1. Pipeline con estandarización y modelo balanceado</span></code></li>
+            <li><code>pipeline = Pipeline([</code></li>
+            <li><code>    (<span class="comment">'scaler'</span>, StandardScaler()),</code></li>
+            <li><code>    (<span class="comment">'classifier'</span>, LogisticRegression(class_weight=<span class="comment">'balanced'</span>))</code></li>
+            <li><code>])</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code><span class="comment"># 2. Entrenamiento del modelo con datos de Fact_SignosVitalesUCI</span></code></li>
+            <li><code>pipeline.fit(X_train, y_train)</code></li>
+            <li><code>y_pred = pipeline.predict(X_test)</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code><span class="comment"># 3. Evaluación de métricas clínicas</span></code></li>
+            <li><code>print(<span class="comment">f"Accuracy: {accuracy_score(y_test, y_pred):.3f}"</span>)</code></li>
+            <li><code>print(<span class="comment">f"Precision: {precision_score(y_test, y_pred):.3f}"</span>)</code></li>
+            <li><code>print(<span class="comment">f"Recall: {recall_score(y_test, y_pred):.3f}"</span>) <span class="comment"># Resultado: 1.000 (0 falsos negativos)</span></code></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="code-section" aria-labelledby="ddl-title">
+      <p class="section-kicker">// DATA MODELING &amp; DDL</p>
+      <h2 id="ddl-title">Diseño de Constelación de Hechos (Zona Gold)</h2>
+      <p class="section-description">
+        Fragmento del script DDL original en SQL Server. Muestra la tabla de hechos de monitoreo UCI, demostrando el uso de llaves sustitutas (surrogate keys) y la declaración explícita de llaves foráneas para garantizar la integridad referencial antes de conectar la capa analítica.
+      </p>
+
+      <div class="code-editor">
+        <div class="editor-header">
+          <div class="traffic-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>schema_gold.sql</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="editor-body">
+          <ol class="code-lines" aria-label="Código SQL del modelo dimensional Gold">
+            <li><code><span class="keyword">CREATE TABLE</span> <span class="function">Gold.Fact_SignosVitalesUCI</span> (</code></li>
+            <li><code>    SignoVitalSK           <span class="number">INT IDENTITY</span>(1,1) <span class="keyword">NOT NULL PRIMARY KEY</span>,</code></li>
+            <li><code>    EventoIOTID            <span class="number">BIGINT</span>            <span class="keyword">NOT NULL</span>,</code></li>
+            <li><code>    PacienteSK             <span class="number">INT</span>               <span class="keyword">NOT NULL</span>,</code></li>
+            <li><code>    TiempoSK               <span class="number">INT</span>               <span class="keyword">NOT NULL</span>,</code></li>
+            <li><code>    DispositivoSK          <span class="number">INT</span>               <span class="keyword">NOT NULL</span>,</code></li>
+            <li><code>    HeartRate              <span class="number">INT</span>               <span class="comment">NULL</span>,</code></li>
+            <li><code>    SpO2                   <span class="number">INT</span>               <span class="comment">NULL</span>,</code></li>
+            <li><code>    PresionSistolica       <span class="number">INT</span>               <span class="comment">NULL</span>,</code></li>
+            <li><code>    Temperatura            <span class="number">DECIMAL</span>(4,1)      <span class="comment">NULL</span>,</code></li>
+            <li><code>    Alarma                 <span class="number">NVARCHAR</span>(30)      <span class="comment">NULL</span>,</code></li>
+            <li><code>    EsAlarmaCritica        <span class="number">BIT</span>               <span class="keyword">NOT NULL DEFAULT</span> 0,</code></li>
+            <li><code> </code></li>
+            <li><code>    <span class="keyword">CONSTRAINT</span> FK_FactSignos_Paciente <span class="keyword">FOREIGN KEY</span> (PacienteSK) <span class="keyword">REFERENCES</span> Gold.Dim_Paciente(PacienteSK),</code></li>
+            <li><code>    <span class="keyword">CONSTRAINT</span> FK_FactSignos_Tiempo   <span class="keyword">FOREIGN KEY</span> (TiempoSK)   <span class="keyword">REFERENCES</span> Gold.Dim_Tiempo(TiempoSK)</code></li>
+            <li><code>);</code></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="decisions" aria-labelledby="decisions-title">
+      <p class="section-kicker">// PROJECT RETROSPECTIVE</p>
+      <h2 id="decisions-title">Decisiones de Diseño y Post-Mortem</h2>
+      <div class="decision-grid">
+        <article>
+          <h3>Privacidad de datos clínicos</h3>
+          <p>
+            La arquitectura prioriza la protección de información clínica mediante anonimización criptográfica irreversible con SHA-256, aplicada antes de exponer los datos a las capas analíticas y al entrenamiento del modelo.
+          </p>
+        </article>
+        <article>
+          <h3>Balanceo de clases y Recall clínico</h3>
+          <p>
+            Se utilizó class_weight='balanced' en la Regresión Logística para evitar que la clase mayoritaria de pacientes estables ocultara los casos de deterioro. El modelo alcanzó un Recall de 1.000, sin falsos negativos en la evaluación reportada.
+          </p>
+        </article>
+        <article>
+          <h3>Retrospectiva y Escalabilidad</h3>
+          <p>
+            La siguiente evolución consiste en ampliar la cobertura de fuentes médicas, automatizar nuevas validaciones del pipeline y evaluar modelos adicionales manteniendo la trazabilidad de predicciones en la constelación de hechos.
+          </p>
+        </article>
+        <article>
+          <h3>Orquestación ETL sin SQL Spaguetti</h3>
+          <p>
+            Se descartó el uso de procedimientos almacenados para las transformaciones con el fin de proteger el esquema flexible <em>schema-on-read</em> de la capa Bronze. En su lugar, el flujo end-to-end se automatizó mediante un Job Maestro (.kjb) en Pentaho Data Integration, el cual implementa control de errores centralizado y detiene la cadena ante anomalías, evitando propagar datos corruptos a la capa analítica.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

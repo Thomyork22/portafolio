@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Caso de estudio técnico de la Arquitectura Cloud y Gestión Tributaria.">
+  <meta name="theme-color" content="#080C14">
+  <title>Arquitectura Cloud y Gestión Tributaria — Caso de estudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="case-study-fidelity.css">
+</head>
+<body>
+  <main class="case-study" id="main-content">
+    <header class="hero">
+      <a class="back-link" href="index.html#proyectos" aria-label="Volver a proyectos">
+        <span aria-hidden="true">&larr;</span>
+        Volver a Proyectos
+      </a>
+
+      <div class="hero-copy">
+        <h1>Arquitectura Cloud y Gestión Tributaria</h1>
+        <p class="terminal-line">$ cat case_study_meta.json</p>
+      </div>
+
+      <dl class="metadata">
+        <div class="metadata-labels" aria-hidden="true">
+          <span>ENTORNO TARGET</span>
+          <span>DEMO PÚBLICA</span>
+          <span>ESTADO</span>
+          <span>ROL / STACK</span>
+        </div>
+
+        <div class="metadata-values">
+          <div>
+            <dt>ENTORNO TARGET</dt>
+            <dd>AWS / Azure Cloud</dd>
+          </div>
+          <div>
+            <dt>DEMO PÚBLICA</dt>
+            <dd>Repositorio Backend Privado</dd>
+          </div>
+          <div>
+            <dt>ESTADO</dt>
+            <dd>Arquitectura y Desarrollo (INACAP)</dd>
+          </div>
+          <div>
+            <dt>ROL / STACK</dt>
+            <dd class="mono">Cloud Architect &amp; Backend (Python, Redis, AWS S3)</dd>
+          </div>
+        </div>
+      </dl>
+    </header>
+
+    <section class="context-grid" aria-label="Contexto y solución del proyecto">
+      <article>
+        <p class="eyebrow"><span aria-hidden="true">▮</span> El Requerimiento</p>
+        <h2>Carga manual y desconexión con el SII</h2>
+        <p>
+          El proceso de gestión de certificados tributarios sufría de carga manual dispersa y falta de trazabilidad. Se requería un mantenedor centralizado capaz de procesar lotes masivos de documentos (PDF/ZIP), validarlos y sincronizarlos automáticamente con el Servicio de Impuestos Internos (SII), garantizando altos estándares de auditoría y seguridad.
+        </p>
+      </article>
+
+      <article>
+        <p class="eyebrow"><span aria-hidden="true">▮</span> Análisis y Solución</p>
+        <h2>Microservicios y Procesamiento Asíncrono</h2>
+        <p>
+          Se diseñó una arquitectura Cloud escalable. El frontend (SPA) se comunica a través de un API Gateway. Para evitar bloqueos durante la carga masiva, el procesamiento de PDFs y validación tributaria se delegó a Workers asíncronos apoyados en Redis, mientras que los documentos físicos se almacenan en repositorios de objetos (S3).
+        </p>
+      </article>
+    </section>
+
+    <section class="architecture" aria-labelledby="architecture-title">
+      <p class="terminal-line">$ sys_architecture --graph</p>
+      <h2 id="architecture-title">Planos de la Arquitectura de Sistemas</h2>
+
+      <div class="architecture-flow">
+        <article class="architecture-node">
+          <p>CLIENT FRONTEND</p>
+          <h3>Frontend &amp; Load Balancer</h3>
+          <span>SPA servida vía CDN</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node compact">
+          <p>GATEWAY SEC</p>
+          <h3>API Gateway &amp; Auth</h3>
+          <span>Ruteo y validación MFA (JWT)</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node">
+          <p>ASYNC PROCESSING</p>
+          <h3>Async Workers &amp; Cache</h3>
+          <span>Procesamiento de colas (Redis)</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node data-node">
+          <p>DATA STORE</p>
+          <h3>Persistencia Cloud</h3>
+          <span>PostgreSQL (Datos) + AWS S3 (Blobs)</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="code-section" aria-labelledby="code-title">
+      <p class="section-kicker">// ASYNC MESSAGE BUS</p>
+      <h2 id="code-title">Cola de Procesamiento Asíncrono (MessageBus)</h2>
+      <p class="section-description">
+        Fragmento del worker en Python (simulando Celery/Redis) encargado de procesar la carga masiva. Demuestra cómo se aísla la subida del documento a AWS S3 y la validación tributaria fuera del hilo principal de la petición HTTP, garantizando escalabilidad.
+      </p>
+
+      <div class="code-editor">
+        <div class="editor-header">
+          <div class="traffic-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>async_cert_worker.py</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="editor-body">
+          <ol class="code-lines" aria-label="Código Python del worker tributario">
+            <li><code><span class="keyword">import</span> boto3</code></li>
+            <li><code><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</code></li>
+            <li><code><span class="keyword">from</span> .models <span class="keyword">import</span> CertificadoTributario, Auditoria</code></li>
+            <li><code><span class="keyword">from</span> .sii_integration <span class="keyword">import</span> SIIClient</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>s3_client = boto3.client(<span class="comment">'s3'</span>)</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code><span class="decorator">@shared_task(bind=True, max_retries=3)</span></code></li>
+            <li><code><span class="keyword">def</span> <span class="function">procesar_lote_certificados</span>(self, lote_id, file_path, user_id):</code></li>
+            <li><code>    <span class="keyword">try</span>:</code></li>
+            <li><code>        <span class="comment"># 1. Subida segura a Object Storage (AWS S3)</span></code></li>
+            <li><code>        storage_key = <span class="comment">f"certificados/{lote_id}/{file_path.split('/')[-1]}"</span></code></li>
+            <li><code>        s3_client.upload_file(file_path, <span class="comment">'bucket-tributario-prod'</span>, storage_key)</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>        <span class="comment"># 2. Validación de negocio y parseo</span></code></li>
+            <li><code>        certificado = CertificadoTributario.objects.get(id=lote_id)</code></li>
+            <li><code>        certificado.storage_key = storage_key</code></li>
+            <li><code>        certificado.estado = <span class="comment">'PROCESADO'</span></code></li>
+            <li><code>        certificado.save()</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>        <span class="comment"># 3. Integración con SII mediante Adaptador</span></code></li>
+            <li><code>        sii_status = SIIClient.enviar_declaracion(certificado.folio)</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>        <span class="comment"># 4. Trazabilidad estricta</span></code></li>
+            <li><code>        Auditoria.objects.create(</code></li>
+            <li><code>            usuario_id=user_id, accion=<span class="comment">'PROCESAMIENTO_LOTE'</span>,</code></li>
+            <li><code>            entidad=<span class="comment">f"Lote: {lote_id}"</span>, resultado=sii_status</code></li>
+            <li><code>        )</code></li>
+            <li><code>        <span class="keyword">return</span> {<span class="comment">"status"</span>: <span class="comment">"SUCCESS"</span>, <span class="comment">"sii_sync"</span>: sii_status}</code></li>
+            <li><code>    <span class="keyword">except</span> Exception <span class="keyword">as</span> exc:</code></li>
+            <li><code>        <span class="keyword">raise</span> self.retry(exc=exc, countdown=<span class="number">60</span>)</code></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="decisions" aria-labelledby="decisions-title">
+      <p class="section-kicker">// PROJECT RETROSPECTIVE</p>
+      <h2 id="decisions-title">Decisiones de Diseño y Post-Mortem</h2>
+      <div class="decision-grid">
+        <article>
+          <h3>Seguridad MFA y RBAC</h3>
+          <p>
+            Debido a la sensibilidad de la información financiera, se implementó seguridad por capas. Todo acceso requiere Autenticación Multifactor (MFA) obligatoria, y las acciones del sistema están protegidas por un modelo de Control de Acceso Basado en Roles (RBAC), limitando las vistas según si el usuario es Corredor, Auditor o Administrador.
+          </p>
+        </article>
+        <article>
+          <h3>Desacoplamiento con AWS S3</h3>
+          <p>
+            Almacenar archivos PDF y ZIP masivos en la base de datos relacional habría degradado el rendimiento. Se optó por un modelo híbrido: PostgreSQL maneja la metadata relacional, mientras que los archivos físicos residen en AWS S3 (Blob Storage), vinculados a través de un 'storage_key' único.
+          </p>
+        </article>
+        <article>
+          <h3>Patrón Adaptador para el SII</h3>
+          <p>
+            La comunicación con el Servicio de Impuestos Internos se encapsuló utilizando el patrón de diseño Adaptador. Esto protege la lógica de negocio interna del sistema; si el SII cambia su API o sus contratos de datos en el futuro, solo será necesario modificar la clase cliente de integración.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

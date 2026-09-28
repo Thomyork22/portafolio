@@ -1,241 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Caso de Estudio Técnico: Motor de Conciliación de Transacciones Asíncronas por Thomas Cortés.">
-  <meta name="theme-color" content="#0D1117">
-  <title>Caso de Estudio: Motor de Conciliación | Thomas Cortés</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Caso de estudio técnico del Sistema de Gestión de Inventario TI para el MOP Los Ríos.">
+  <meta name="theme-color" content="#080C14">
+  <title>Sistema de Gestión de Inventario TI — Caso de estudio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="case-study-fidelity.css">
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
-
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a href="index.html" class="brand-logo" aria-label="Inicio">
-        <span class="brand-name">Thomas Cortés</span>
-        <span class="brand-tag">/ Full Stack</span>
+  <main class="case-study" id="main-content">
+    <header class="hero">
+      <a class="back-link" href="index.html#proyectos" aria-label="Volver a proyectos">
+        <span aria-hidden="true">&larr;</span>
+        Volver a Proyectos
       </a>
 
-      <nav class="nav-menu" role="navigation" aria-label="Navegación principal">
-        <ul class="nav-links">
-          <li><a href="index.html#sobre-mi" class="nav-item">Sobre mí</a></li>
-          <li><a href="index.html#proyectos" class="nav-item">Proyectos</a></li>
-          <li><a href="index.html#stack" class="nav-item">Stack</a></li>
-          <li><a href="index.html#contacto" class="nav-item">Contacto</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Perfil de GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-        </a>
+      <div class="hero-copy">
+        <h1>Sistema de Gestión de Inventario TI</h1>
+        <p class="terminal-line">$ cat case_study_meta.json</p>
       </div>
-    </div>
-  </header>
 
-  <main id="main-content" class="case-study-main" role="main">
-    <div class="container">
+      <dl class="metadata">
+        <div class="metadata-labels" aria-hidden="true">
+          <span>ROL</span>
+          <span>DURACIÓN</span>
+          <span>ENTORNO TARGET</span>
+          <span>DEMO</span>
+        </div>
 
-      <!-- Botón de regreso -->
-      <nav class="back-nav" aria-label="Navegación de retorno">
-        <a href="index.html#proyectos" class="back-link">
-          <span aria-hidden="true">&larr;</span> Volver a Proyectos
-        </a>
-      </nav>
-
-      <header class="case-study-header">
-        <h1 class="case-study-title">Motor de Conciliación de Transacciones Asíncronas</h1>
-        
-        <!-- Metadata Strip -->
-        <div class="metadata-strip" aria-label="Ficha técnica del proyecto">
-          <div class="meta-item">
-            <span class="meta-k">Rol:</span>
-            <span class="meta-v">System Architect &amp; Full Stack</span>
+        <div class="metadata-values">
+          <div>
+            <dt>ROL</dt>
+            <dd>Full Stack Developer</dd>
           </div>
-          <div class="meta-separator" aria-hidden="true">&vert;</div>
-          <div class="meta-item">
-            <span class="meta-k">Duración:</span>
-            <span class="meta-v">4 meses</span>
+          <div>
+            <dt>DURACIÓN</dt>
+            <dd>3 meses</dd>
           </div>
-          <div class="meta-separator" aria-hidden="true">&vert;</div>
-          <div class="meta-item">
-            <span class="meta-k">Estado:</span>
-            <span class="meta-v text-green">Producción</span>
+          <div>
+            <dt>ENTORNO TARGET</dt>
+            <dd>Servidor Local (Intranet MOP)</dd>
           </div>
-          <div class="meta-separator" aria-hidden="true">&vert;</div>
-          <div class="meta-item">
-            <span class="meta-k">Repositorio:</span>
-            <span class="meta-v">GitHub (Privado/Demo disponible)</span>
+          <div>
+            <dt>DEMO</dt>
+            <dd class="mono">Vercel / Render</dd>
           </div>
         </div>
-      </header>
+      </dl>
+    </header>
 
-      <!-- Contexto & Análisis de Falla (2 Columnas) -->
-      <section class="section-case-study" aria-labelledby="context-heading">
-        <h2 id="context-heading" class="visually-hidden">Contexto y Análisis de Falla</h2>
-        <div class="case-two-cols">
-          
-          <div class="col-case">
-            <span class="code-comment">// EL REQUERIMIENTO</span>
-            <h3 class="col-case-title">Escalabilidad asíncrona sin bloqueos</h3>
-            <p class="col-case-text">
-              El sistema de la fintech requería conciliar un volumen constante de 10,000 transacciones por 
-              minuto contra múltiples APIs bancarias de terceros. No era viable bloquear hilos de base de 
-              datos en transacciones síncronas que dependieran de tiempos de respuesta externos variables.
-            </p>
-          </div>
+    <section class="context-grid" aria-label="Contexto y solución del proyecto">
+      <article>
+        <p class="eyebrow"><span aria-hidden="true">▮</span> El Requerimiento</p>
+        <h2>Trazabilidad de hardware sin pérdida de datos</h2>
+        <p>
+          El Ministerio de Obras Públicas necesitaba centralizar sus activos físicos de tecnologías de información y eliminar la dependencia de planillas Excel dispersas. La información fragmentada dificultaba conocer la ubicación, el responsable y el estado de cada equipo, además de debilitar la trazabilidad del ciclo de vida del hardware.
+        </p>
+      </article>
 
-          <div class="col-case">
-            <span class="code-comment">// ANÁLISIS DE FALLA</span>
-            <h3 class="col-case-title">Deadlocks e ineficiencia por contención</h3>
-            <p class="col-case-text">
-              La implementación inicial utilizaba transacciones ACID síncronas, bloqueando filas en PostgreSQL. 
-              Ante fallos o picos de latencia en las APIs de terceros, la latencia p99 aumentaba por encima 
-              de los 4,000ms, agotando rápidamente la piscina de conexiones de la base de datos y produciendo 
-              fallos generales en cascada.
-            </p>
-          </div>
+      <article>
+        <p class="eyebrow"><span aria-hidden="true">▮</span> Análisis y Solución</p>
+        <h2>Arquitectura web desacoplada y normalización</h2>
+        <p>
+          La solución implementa una SPA con React y Vite conectada a una API REST en Django y DRF. La base de datos utiliza catálogos estrictos normalizados en tercera forma normal (3NF), importación transaccional desde Excel y generación automatizada de actas de entrega, traslado y baja.
+        </p>
+      </article>
+    </section>
 
+    <section class="architecture" aria-labelledby="architecture-title">
+      <p class="terminal-line">$ sys_architecture --graph</p>
+      <h2 id="architecture-title">Planos de la Arquitectura de Sistemas</h2>
+
+      <div class="architecture-flow">
+        <article class="architecture-node">
+          <p>CLIENT FRONTEND</p>
+          <h3>Cliente SPA (React + Vite)</h3>
+          <span>Red local del MOP</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node compact">
+          <p>GATEWAY SEC</p>
+          <h3>Auth Barrier</h3>
+          <span>Bearer Token JWT</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node">
+          <p>LOGIC ENGINE</p>
+          <h3>Backend REST (Django)</h3>
+          <span>Gunicorn On-Premise</span>
+        </article>
+        <div class="connector" aria-hidden="true"></div>
+        <article class="architecture-node data-node">
+          <p>DATA STORE</p>
+          <h3>Persistencia (PostgreSQL)</h3>
+          <span>Instancia local aislada</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="code-section" aria-labelledby="code-title">
+      <p class="section-kicker">// EXCEL TRANSACTION ENGINE</p>
+      <h2 id="code-title">Importación Transaccional y Normalización</h2>
+      <p class="section-description">
+        Fragmento del motor de importación masiva. La operación se ejecuta dentro de una transacción, valida los registros contra catálogos maestros y usa inserción masiva para conservar la integridad del inventario y permitir rollback completo ante anomalías.
+      </p>
+
+      <div class="code-editor">
+        <div class="editor-header">
+          <div class="traffic-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>import_engine.py</span>
+          <span aria-hidden="true"></span>
         </div>
-      </section>
+        <div class="editor-body">
+          <ol class="code-lines" aria-label="Código Python del motor de importación">
+            <li><code><span class="decorator">@transaction.atomic</span></code></li>
+            <li><code><span class="keyword">def</span> <span class="function">procesar_lote_excel</span>(file_obj, usuario):</code></li>
+            <li><code>    <span class="comment"># 1. Crear registro de lote para trazabilidad y rollback</span></code></li>
+            <li><code>    lote = LoteImportacion.objects.create(usuario=usuario, archivo=file_obj.name)</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>    workbook = openpyxl.load_workbook(file_obj)</code></li>
+            <li><code>    sheet = workbook.active</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>    equipos_a_crear = []</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>    <span class="keyword">for</span> row <span class="keyword">in</span> sheet.iter_rows(min_row=<span class="number">2</span>, values_only=<span class="constant">True</span>):</code></li>
+            <li><code>        <span class="keyword">if not</span> row[<span class="number">0</span>]: <span class="keyword">continue</span>  <span class="comment"># Saltar filas vacías</span></code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>        <span class="comment"># 2. Normalización estricta contra catálogos maestros (3NF)</span></code></li>
+            <li><code>        marca = Marca.objects.get_or_create(nombre=str(row[<span class="number">3</span>]).strip().upper())[<span class="number">0</span>]</code></li>
+            <li><code>        tipo = TipoEquipo.objects.get_or_create(nombre=str(row[<span class="number">2</span>]).strip().capitalize())[<span class="number">0</span>]</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>        <span class="comment"># 3. Preparar instancia validada</span></code></li>
+            <li><code>        equipos_a_crear.append(Equipo(</code></li>
+            <li><code>            inventario=row[<span class="number">0</span>],</code></li>
+            <li><code>            serie=row[<span class="number">1</span>],</code></li>
+            <li><code>            tipo_equipo=tipo,</code></li>
+            <li><code>            marca=marca,</code></li>
+            <li><code>            lote_origen=lote</code></li>
+            <li><code>        ))</code></li>
+            <li><code>&nbsp;</code></li>
+            <li><code>    <span class="comment"># 4. Inserción masiva optimizada</span></code></li>
+            <li><code>    Equipo.objects.bulk_create(equipos_a_crear)</code></li>
+            <li><code>    <span class="keyword">return</span> lote.id</code></li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
-      <!-- Planos de Arquitectura (Blueprint) -->
-      <section class="section-case-study" aria-labelledby="blueprint-heading">
-        <h2 id="blueprint-heading" class="section-heading-case">Planos de la Arquitectura de Sistemas</h2>
-        
-        <div class="blueprint-container" role="figure" aria-label="Diagrama de topología de arquitectura de microservicios">
-          <div class="blueprint-grid-overlay" aria-hidden="true"></div>
-          
-          <div class="blueprint-flow">
-            
-            <div class="bp-node">
-              <span class="bp-node-title">Web &amp; Mobile Clients</span>
-            </div>
-
-            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
-
-            <div class="bp-node">
-              <span class="bp-node-title">API Gateway</span>
-              <span class="bp-node-sub">Rate Limiting &amp; Auth</span>
-            </div>
-
-            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
-
-            <div class="bp-node bp-highlight">
-              <span class="bp-node-title">Worker Queue</span>
-              <span class="bp-node-sub">Redis / RabbitMQ</span>
-            </div>
-
-            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
-
-            <div class="bp-node">
-              <span class="bp-node-title">Idempotent Processor</span>
-            </div>
-
-            <div class="bp-arrow" aria-hidden="true">&rarr;</div>
-
-            <div class="bp-node">
-              <span class="bp-node-title">PostgreSQL Cluster</span>
-            </div>
-
-          </div>
-
-          <p class="blueprint-caption">
-            Topología desacoplada: El cliente recibe respuesta en 12ms (HTTP 202 Accepted) mientras la cola 
-            y los workers asíncronos procesan las conciliaciones bancarias con reintentos controlados.
+    <section class="decisions" aria-labelledby="demo-title">
+      <p class="section-kicker">// LIVE DEMO ACCESS</p>
+      <h2 id="demo-title">Acceso a la Demo</h2>
+      <div class="decision-grid">
+        <article>
+          <h3>Explora el sistema desplegado</h3>
+          <p>
+            Puedes explorar el sistema desplegado en Vercel utilizando las siguientes credenciales de ejemplo:
           </p>
-        </div>
-      </section>
-
-      <!-- Bloque de Código de 20 Líneas (Implementación Real) -->
-      <section class="section-case-study" aria-labelledby="code-heading">
-        <h2 id="code-heading" class="section-heading-case">Implementación Técnica y Control de Idempotencia</h2>
-        
-        <div class="code-block-full" role="region" aria-label="Código fuente de conciliador de transacciones">
-          <div class="code-header">
-            <span class="code-file-name">TransactionReconciler.ts</span>
-            <span class="code-lang-tag">TypeScript (Strict)</span>
-          </div>
-          <pre><code><span class="code-line"><span class="line-num">01</span> <span class="kw">import</span> { <span class="tp">Transaction</span>, <span class="tp">OutboxStore</span> } <span class="kw">from</span> <span class="str">'./db'</span>;</span>
-<span class="code-line"><span class="line-num">02</span> <span class="kw">import</span> { <span class="tp">RedisClient</span> } <span class="kw">from</span> <span class="str">'./redis'</span>;</span>
-<span class="code-line"><span class="line-num">03</span> </span>
-<span class="code-line"><span class="line-num">04</span> <span class="kw">export class</span> <span class="tp">TransactionReconciler</span> {</span>
-<span class="code-line"><span class="line-num">05</span>   <span class="kw">constructor</span>(<span class="kw">private</span> db: <span class="tp">DBClient</span>, <span class="kw">private</span> cache: <span class="tp">RedisClient</span>) {}</span>
-<span class="code-line"><span class="line-num">06</span> </span>
-<span class="code-line"><span class="line-num">07</span>   <span class="kw">async</span> <span class="fn">processWithOutbox</span>(tx: <span class="tp">Transaction</span>): <span class="tp">Promise</span>&lt;<span class="kw">void</span>&gt; {</span>
-<span class="code-line"><span class="line-num">08</span>     <span class="kw">const</span> idempotencyKey = <span class="str">`tx:idemp:${tx.id}`</span>;</span>
-<span class="code-line"><span class="line-num">09</span>     </span>
-<span class="code-line"><span class="line-num">10</span>     <span class="code-comment">// Lock temporal en caché para evitar condiciones de carrera inmediatas</span></span>
-<span class="code-line"><span class="line-num">11</span>     <span class="kw">const</span> locked = <span class="kw">await</span> <span class="kw">this</span>.cache.<span class="fn">set</span>(idempotencyKey, <span class="str">'pending'</span>, <span class="str">'NX'</span>, <span class="str">'EX'</span>, <span class="num">10</span>);</span>
-<span class="code-line"><span class="line-num">12</span>     <span class="kw">if</span> (!locked) <span class="kw">throw new</span> <span class="tp">Error</span>(<span class="str">'Duplicate transaction in-flight'</span>);</span>
-<span class="code-line"><span class="line-num">13</span> </span>
-<span class="code-line"><span class="line-num">14</span>     <span class="kw">await</span> <span class="kw">this</span>.db.<span class="fn">transaction</span>(<span class="kw">async</span> (manager) =&gt; {</span>
-<span class="code-line"><span class="line-num">15</span>       <span class="code-comment">// Escribir en outbox para mantener consistencia eventual garantizada</span></span>
-<span class="code-line"><span class="line-num">16</span>       <span class="kw">await</span> manager.<span class="fn">save</span>(<span class="kw">new</span> <span class="tp">OutboxStore</span>(tx));</span>
-<span class="code-line"><span class="line-num">17</span>       <span class="kw">await</span> manager.<span class="fn">updateTransactionStatus</span>(tx.id, <span class="str">'processed'</span>);</span>
-<span class="code-line"><span class="line-num">18</span>     });</span>
-<span class="code-line"><span class="line-num">19</span>   }</span>
-<span class="code-line"><span class="line-num">20</span> }</span></code></pre>
-        </div>
-      </section>
-
-      <!-- Decisiones de Diseño & Post-Mortem (3 Tarjetas) -->
-      <section class="section-case-study" aria-labelledby="postmortem-heading">
-        <h2 id="postmortem-heading" class="section-heading-case">Decisiones de Diseño y Post-Mortem Técnico</h2>
-        
-        <div class="postmortem-grid">
-          
-          <article class="postmortem-card">
-            <h3 class="postmortem-title">Consistencia Eventual vs Latencia</h3>
-            <p class="postmortem-text">
-              Sacrificamos la consistencia inmediata a cambio de una alta disponibilidad extrema. El estado de 
-              conciliación se garantiza de manera eventual en menos de 2 segundos, reduciendo la latencia de 
-              respuesta al usuario a solo 12ms promedio.
-            </p>
-          </article>
-
-          <article class="postmortem-card">
-            <h3 class="postmortem-title">Seguridad y Defensa OWASP</h3>
-            <p class="postmortem-text">
-              Implementamos validación criptográfica estricta en el payload utilizando firmas HMAC SHA-256. 
-              Esto evita falsificaciones de lotes y garantiza que el origen de las transacciones procesadas 
-              provenga exclusivamente de endpoints autorizados.
-            </p>
-          </article>
-
-          <article class="postmortem-card">
-            <h3 class="postmortem-title">Retrospectiva Técnica</h3>
-            <p class="postmortem-text">
-              Si tuviera que refactorizar el sistema hoy, reemplazaría el polling actual de workers por un 
-              esquema de observabilidad con telemetría distribuida utilizando OpenTelemetry, mejorando el 
-              diagnóstico de cuellos de botella en APIs de terceros.
-            </p>
-          </article>
-
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <p class="footer-copy">Thomas Cortés &copy; 2026 &middot; Hecho con precisión técnica</p>
-      <div class="footer-links">
-        <a href="mailto:t.cortes@example.com" class="footer-link">t.cortes@example.com</a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          <p>
+            <strong>Usuario:</strong> <code>admin</code><br>
+            <strong>Contraseña:</strong> <code>123123</code>
+          </p>
+          <p>
+            <em>Nota: Estas credenciales otorgan acceso exclusivamente con fines demostrativos.</em>
+          </p>
+          <p>
+            <a href="https://inventario-mop.vercel.app/" target="_blank" rel="noopener noreferrer">Abrir demo del Inventario TI &rarr;</a>
+          </p>
+        </article>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <script src="app.js"></script>
+    <section class="decisions" aria-labelledby="decisions-title">
+      <p class="section-kicker">// PROJECT RETROSPECTIVE</p>
+      <h2 id="decisions-title">Decisiones de Diseño y Post-Mortem</h2>
+      <div class="decision-grid">
+        <article>
+          <h3>Despliegue On-Premise vs Cloud</h3>
+          <p>
+            Por políticas estrictas de seguridad de la información gubernamental, el sistema fue diseñado para operar exclusivamente dentro de la intranet local del MOP. El trade-off reduce la flexibilidad de escalamiento externo, pero mantiene la red institucional bajo control y evita exponer datos de infraestructura pública fuera del servidor físico.
+          </p>
+        </article>
+        <article>
+          <h3>Seguridad y Autenticación JWT</h3>
+          <p>
+            La API utiliza SimpleJWT y tokens Bearer para proteger las operaciones de inventario. Los interceptores de Axios adjuntan el token a las solicitudes protegidas y centralizan el manejo de respuestas de autenticación sin duplicar lógica en cada vista de la SPA.
+          </p>
+        </article>
+        <article>
+          <h3>Retrospectiva y Escalabilidad</h3>
+          <p>
+            Como evolución para la versión 2.0, se proyecta incorporar WebSockets para notificar fallas y cambios de estado en tiempo real, reduciendo la necesidad de actualizar manualmente las vistas del inventario y mejorando la respuesta del departamento TI.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
